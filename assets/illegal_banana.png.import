@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/arrowUp.png-6b44d9cd231bfce9e08a8210403ce1d2.s3tc.stex"
-path.etc2="res://.import/arrowUp.png-6b44d9cd231bfce9e08a8210403ce1d2.etc2.stex"
+path.s3tc="res://.import/illegal_banana.png-854c644b5a053b6a2912853b16c03105.s3tc.stex"
+path.etc2="res://.import/illegal_banana.png-854c644b5a053b6a2912853b16c03105.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/kenney_gameicons/PNG/Black/1x/arrowUp.png"
-dest_files=[ "res://.import/arrowUp.png-6b44d9cd231bfce9e08a8210403ce1d2.s3tc.stex", "res://.import/arrowUp.png-6b44d9cd231bfce9e08a8210403ce1d2.etc2.stex" ]
+source_file="res://assets/illegal_banana.png"
+dest_files=[ "res://.import/illegal_banana.png-854c644b5a053b6a2912853b16c03105.s3tc.stex", "res://.import/illegal_banana.png-854c644b5a053b6a2912853b16c03105.etc2.stex" ]
 
 [params]
 

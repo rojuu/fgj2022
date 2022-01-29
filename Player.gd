@@ -1,12 +1,31 @@
 extends KinematicBody
 
-export var move_speed = 30
-export var sensitivity = 6.0
+export(float) var move_speed = 30
+export(float) var sensitivity = 6.0
+
+export(PackedScene) var default_weapon
 
 onready var velocity: Vector3 = Vector3.ZERO
 onready var look_vec: Vector2 = Vector2.ZERO
 
-onready var camera := $Camera
+onready var weapon_point: Position3D = $Camera/WeaponPoint
+
+onready var camera: Camera = $Camera
+
+var weapon: BaseWeapon
+
+func change_weapon(weapon_scene: PackedScene):
+	if weapon != null:
+		camera.remove_child(weapon)
+		weapon.queue_free()
+	weapon = weapon_scene.instance()
+	camera.add_child(weapon)
+	weapon.set_translation(weapon_point.translation)
+	weapon.set_rotation(weapon_point.rotation)
+	weapon.set_scale(weapon_point.scale)
+
+func _ready():
+	change_weapon(default_weapon)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -37,7 +56,10 @@ func _process(dt: float):
 
 	# Shooting
 	if Input.is_action_just_pressed("shoot"):
-		print("BANG!")
+		var vpc := Vector2(vp_size.x / 2, vp_size.y / 2)
+		var origin := camera.project_ray_origin(vpc)
+		var dir := camera.project_ray_normal(vpc)
+		weapon.shoot(origin, dir)
 
 	# Kill if falls off the platform
 	if translation.y < -50.0:
@@ -45,7 +67,7 @@ func _process(dt: float):
 
 
 func _physics_process(delta):
-	velocity.y -= 9.8  # gravity
+	velocity.y -= 9.8
 	
 	move_and_slide(velocity, Vector3(0,1,0))
 	velocity.x = 0

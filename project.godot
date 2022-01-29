@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://enemies/BaseEnemy.gd"
+}, {
+"base": "Spatial",
+"class": "BaseWeapon",
+"language": "GDScript",
+"path": "res://weapons/BaseWeapon.gd"
+}, {
 "base": "EditorPlugin",
 "class": "GodotSfxr",
 "language": "GDScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://SpawnPoint.gd"
 } ]
 _global_script_class_icons={
+"BaseEnemy": "",
+"BaseWeapon": "",
 "GodotSfxr": "",
 "SfxrGenerator": "",
 "SfxrGlobals": "",
@@ -73,6 +85,11 @@ move_forwards={
 move_backwards={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

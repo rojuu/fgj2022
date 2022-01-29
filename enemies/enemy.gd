@@ -1,27 +1,27 @@
-extends KinematicBody
+extends BaseEnemy
 
 export var speed = 10
 export var flying = false
-export var gravity = 100
+export var gravity = 9.8
 var velocity = Vector3.ZERO
+var gravity_velocity = 0
 var player
 var player_position
 var forward
 
 func _ready():
 	player =  get_tree().get_nodes_in_group("Player")[0]
-	print(player)
 
 func _physics_process(delta):
 	player_position = player.translation
-	print(player_position)
 	look_at(player_position, Vector3.UP)
 	forward = -global_transform.basis.z
 	if(flying):
 		forward.y = 0
 	velocity = forward * speed
 	if (!flying):
-			velocity.y -= gravity
+			gravity_velocity -= gravity
+	velocity.y += gravity_velocity
 	move_and_slide(velocity, Vector3(0,1,0))
 	if is_on_floor():
-		velocity.y = 0
+		gravity_velocity = 0
