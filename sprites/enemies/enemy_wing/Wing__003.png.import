@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Pumpkin.png-f77dc4dc22e2cc67ebc0bbe64736a818.s3tc.stex"
-path.etc2="res://.import/Pumpkin.png-f77dc4dc22e2cc67ebc0bbe64736a818.etc2.stex"
+path.s3tc="res://.import/Wing__003.png-fd3aeef491e7ff22e22ff53b8024500e.s3tc.stex"
+path.etc2="res://.import/Wing__003.png-fd3aeef491e7ff22e22ff53b8024500e.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/Pumpkin.png"
-dest_files=[ "res://.import/Pumpkin.png-f77dc4dc22e2cc67ebc0bbe64736a818.s3tc.stex", "res://.import/Pumpkin.png-f77dc4dc22e2cc67ebc0bbe64736a818.etc2.stex" ]
+source_file="res://sprites/enemies/enemy_wing/Wing__003.png"
+dest_files=[ "res://.import/Wing__003.png-fd3aeef491e7ff22e22ff53b8024500e.s3tc.stex", "res://.import/Wing__003.png-fd3aeef491e7ff22e22ff53b8024500e.etc2.stex" ]
 
 [params]
 

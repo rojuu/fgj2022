@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Wing__0004.png-05eea33869b34afe417dbf4e13fe3877.s3tc.stex"
-path.etc2="res://.import/Wing__0004.png-05eea33869b34afe417dbf4e13fe3877.etc2.stex"
+path.s3tc="res://.import/Wing__001.png-1a0d7f9772369bdd6dedc1615af287b5.s3tc.stex"
+path.etc2="res://.import/Wing__001.png-1a0d7f9772369bdd6dedc1615af287b5.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/enemy_wing/Wing__0004.png"
-dest_files=[ "res://.import/Wing__0004.png-05eea33869b34afe417dbf4e13fe3877.s3tc.stex", "res://.import/Wing__0004.png-05eea33869b34afe417dbf4e13fe3877.etc2.stex" ]
+source_file="res://sprites/enemies/enemy_wing/Wing__001.png"
+dest_files=[ "res://.import/Wing__001.png-1a0d7f9772369bdd6dedc1615af287b5.s3tc.stex", "res://.import/Wing__001.png-1a0d7f9772369bdd6dedc1615af287b5.etc2.stex" ]
 
 [params]
 
