@@ -102,7 +102,7 @@ func _physics_process(delta):
 	
 	for idx in range(get_slide_count()):
 		var collision = get_slide_collision(idx)
-		var enemy: BaseEnemy = collision.collider as BaseEnemy
+		var enemy: Enemy = collision.collider as Enemy
 		if enemy:
 			emit_signal("died", alive_time)
 

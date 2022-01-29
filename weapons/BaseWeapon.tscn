@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://weapons/BaseWeapon.gd" type="Script" id=1]
 [ext_resource path="res://assets/illegal_banana.png" type="Texture" id=2]
+[ext_resource path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" type="Script" id=3]
 
 [sub_resource type="SphereShape" id=1]
+
+[sub_resource type="AudioStreamGenerator" id=2]
+buffer_length = 0.151814
 
 [node name="BaseWeapon" type="Spatial"]
 script = ExtResource( 1 )
@@ -18,3 +22,34 @@ monitoring = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 1 )
+
+[node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 2 )
+script = ExtResource( 3 )
+wave/type = 3
+sample_params/sound_vol = 0.1
+sample_params/sample_rate = 44100.0
+envelope/attack_time = 0.0
+envelope/sustain_time = 0.211608
+envelope/punch_time = 0.658644
+envelope/decay_time = 0.14888
+frequency/start_frequency = 0.742175
+frequency/min_freq_cutoff = 0.0
+frequency/slide = 0.0
+frequency/delta_slide = 0.0
+vibrato/depth = 0.0
+vibrato/speed = 0.0
+arpeggiation/frequency_mult = -0.31361
+arpeggiation/change_speed = 0.718226
+duty_cycle/duty_cycle = 0.0
+duty_cycle/sweep = 0.0
+retrigger/rate = 0.0
+flanger/offset = 0.135107
+flanger/sweep = -0.0452156
+low_pass_filter/cutoff_frequency = 1.0
+low_pass_filter/cutoff_sweep = 0.0
+low_pass_filter/resonance = 0.0
+high_pass_filter/cutoff_frequency = 0.0
+high_pass_filter/cutoff_sweep = 0.0
+actions/generator = null
+actions/play = null

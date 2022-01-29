@@ -1,18 +1,63 @@
-extends BaseEnemy
+extends KinematicBody
 
-export var speed = 10
-export var flying = false
-export var gravity = 9.8
-var velocity = Vector3.ZERO
-var gravity_velocity = 0
-var player
-var player_position
-var forward
+class_name Enemy
+
+export(float) var health = 6
+export(float) var speed = 10
+export(bool) var flying = false
+export(float) var gravity = 9.8
+
+export(Array, PackedScene) var drop_weapons
+
+onready var dying := false
+
+onready var velocity := Vector3.ZERO
+onready var gravity_velocity = 0
+onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
+onready var player_position: Vector3
+onready var forward: Vector3
+
+onready var rng := RandomNumberGenerator.new()
 
 func _ready():
-	player =  get_tree().get_nodes_in_group("Player")[0]
+	rng.seed = OS.get_unix_time()
+
+
+func random_element_from_array(arr):
+	var idx = rng.randi_range(0, len(arr)-1)
+	return arr[idx]
+
+
+func drop_random_weapon():
+	if len(drop_weapons) == 0:
+		return
+	var weapon_scene = random_element_from_array(drop_weapons)
+	var weapon = weapon_scene.instance()
+	get_tree().root.add_child(weapon)
+	weapon.translation = translation
+
+
+func take_damage(damage: float):
+	if dying:
+		return
+	health -= damage
+	if health <= 0:
+		dying = true
+	var sprite := $Sprite3D as Sprite3D
+	sprite.modulate = Color.red
+	$AudioStreamPlayer3D.play()
+	yield(get_tree().create_timer(0.3), "timeout")
+	$AudioStreamPlayer3D.stop()
+	sprite.modulate = Color.white
+	if dying:
+		drop_random_weapon()
+		queue_free()
+
 
 func _physics_process(delta):
+	if dying:
+		return
+
 	player_position = player.translation
 	look_at(player_position, Vector3.UP)
 	forward = -global_transform.basis.z

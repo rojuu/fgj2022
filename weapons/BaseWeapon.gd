@@ -11,8 +11,15 @@ onready var picked_up: bool = false
 var original_translation
 
 func _ready():
+	var t := Thread.new()
+	t.start(self, "build_sfxr_buffer")
 	original_translation = translation
 	set_scale(Vector3.ONE * 10)
+
+
+func build_sfxr_buffer():
+	var p := $SfxrStreamPlayer as SfxrStreamPlayer
+	p._build_buffer()
 
 
 func pickup(owner):
@@ -22,8 +29,10 @@ func pickup(owner):
 
 
 func shoot(origin: Vector3, dir: Vector3):
+	var p := $SfxrStreamPlayer as SfxrStreamPlayer
+	p.play_sfx()
 	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players)
-	var enemy: BaseEnemy = ray_result.collider as BaseEnemy
+	var enemy: Enemy = ray_result.collider as Enemy
 	if enemy != null:
 		enemy.take_damage(damage)
 

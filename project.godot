@@ -9,15 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody",
-"class": "BaseEnemy",
-"language": "GDScript",
-"path": "res://enemies/BaseEnemy.gd"
-}, {
 "base": "Spatial",
 "class": "BaseWeapon",
 "language": "GDScript",
 "path": "res://weapons/BaseWeapon.gd"
+}, {
+"base": "KinematicBody",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://enemies/enemy.gd"
 }, {
 "base": "EditorPlugin",
 "class": "GodotSfxr",
@@ -45,8 +45,8 @@ _global_script_classes=[ {
 "path": "res://SpawnPoint.gd"
 } ]
 _global_script_class_icons={
-"BaseEnemy": "",
 "BaseWeapon": "",
+"Enemy": "",
 "GodotSfxr": "",
 "SfxrGenerator": "",
 "SfxrGlobals": "",
@@ -59,6 +59,14 @@ _global_script_class_icons={
 config/name="fgj2022"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot_sfxr/plugin.cfg" )
+
+[global]
+
+addon=false
 
 [input]
 
