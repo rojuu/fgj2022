@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/kenney_gameicons/PNG/White/2x/exclamation.png" type="Texture" id=1]
-[ext_resource path="res://TempEnemy.gd" type="Script" id=2]
+[ext_resource path="res://enemies/TempEnemy.gd" type="Script" id=2]
 
 [node name="TempEnemy" type="Spatial"]
 script = ExtResource( 2 )
