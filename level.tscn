@@ -1,104 +1,301 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/kenney_prototypetextures/PNG/Dark/texture_08.png" type="Texture" id=1]
 [ext_resource path="res://SpawnPoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/kenney_prototypetextures/PNG/Orange/texture_09.png" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 2, 2, 1 )
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 100, 0.5, 100 )
+[sub_resource type="ShaderMaterial" id=3]
 
 [node name="level" type="Spatial"]
-
-[node name="StaticBody" type="StaticBody" parent="."]
-
-[node name="CSGBox" type="CSGBox" parent="StaticBody"]
-width = 200.0
-height = 1.0
-depth = 200.0
-material = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="SpawnPoints" type="Node" parent="."]
 
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.843, 37.1791, 5.60389 )
-
-[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.843, 37.1791, -34.7239 )
-
-[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.843, 37.1791, -97.3662 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, -130 )
 
 [node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.843, 37.1791, -124.793 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 130 )
 
-[node name="SpawnPoint5" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 62.8431, 37.1791, -124.793 )
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -130, 35, 0 )
 
-[node name="SpawnPoint6" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44878, 37.1791, -124.793 )
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 130, 35, 0 )
 
-[node name="SpawnPoint7" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4042, 37.1791, -124.793 )
+[node name="Wall4" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 15, 55 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint8" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -108.596, 37.1791, -124.793 )
+[node name="Wall12" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 90, 75 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 120.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint9" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, -124.793 )
+[node name="Wall13" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 90, -75 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 120.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint10" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, -72.0933 )
+[node name="Wall18" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 90, 75 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 120.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint11" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, -35.9794 )
+[node name="Wall19" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 90, -75 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 120.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint12" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, -5.15687 )
+[node name="Wall20" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -155, 90, 0 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 270.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint13" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, 41.5576 )
+[node name="Wall21" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 155, 90, 0 )
+use_collision = true
+width = 30.0
+height = 200.0
+depth = 270.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint14" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, 84.0421 )
+[node name="Wall22" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, 155 )
+use_collision = true
+width = 230.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint15" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -127.293, 37.1791, 129.299 )
+[node name="Wall23" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 90, -155 )
+use_collision = true
+width = 230.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint16" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79.3377, 37.1791, 129.299 )
+[node name="Wall14" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 90, -125 )
+use_collision = true
+width = 100.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint17" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.91173, 37.1791, 129.299 )
+[node name="Wall15" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 90, -125 )
+use_collision = true
+width = 100.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint18" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53.7087, 37.1791, 129.299 )
+[node name="Wall16" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 90, 125 )
+use_collision = true
+width = 100.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint19" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 108.482, 37.1791, 129.299 )
+[node name="Wall17" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 90, 125 )
+use_collision = true
+width = 100.0
+height = 200.0
+depth = 30.0
+material = SubResource( 2 )
 
-[node name="SpawnPoint20" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 137.318, 37.1791, 129.299 )
+[node name="Wall8" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 15, 0 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 4 )
 
-[node name="SpawnPoint21" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 137.318, 37.1791, 74.2712 )
+[node name="Wall9" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 15, 0 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 4 )
 
-[node name="SpawnPoint22" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 137.318, 37.1791, 42.2525 )
+[node name="Wall10" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -125 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 4 )
 
-[node name="SpawnPoint23" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.28, 37.1791, 33.0428 )
+[node name="Wall11" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 125 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 4 )
 
-[node name="SpawnPoint24" parent="SpawnPoints" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 132.28, 37.1791, 33.0428 )
+[node name="Wall5" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 15, 55 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 2 )
+
+[node name="Wall6" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 15, -55 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 2 )
+
+[node name="Wall7" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 15, -55 )
+use_collision = true
+width = 30.0
+height = 30.0
+depth = 30.0
+material = SubResource( 2 )
+
+[node name="Floor" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
+use_collision = true
+width = 200.0
+height = 10.0
+depth = 200.0
+material = SubResource( 1 )
+
+[node name="Floor10" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
+use_collision = true
+width = 340.0
+height = 20.0
+depth = 340.0
+material = SubResource( 1 )
+
+[node name="Floor2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -90, -5, 0 )
+use_collision = true
+width = 40.0
+height = 10.0
+depth = 220.0
+material = SubResource( 1 )
+
+[node name="Floor3" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 90, -5, 0 )
+use_collision = true
+width = 40.0
+height = 10.0
+depth = 220.0
+material = SubResource( 1 )
+
+[node name="Floor4" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 90 )
+use_collision = true
+width = 140.0
+height = 10.0
+depth = 40.0
+material = SubResource( 1 )
+
+[node name="Floor5" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -90 )
+use_collision = true
+width = 140.0
+height = 10.0
+depth = 40.0
+material = SubResource( 1 )
+
+[node name="Floor6" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -5, -55 )
+use_collision = true
+width = 30.0
+height = 10.0
+depth = 30.0
+material = SubResource( 1 )
+
+[node name="Floor7" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -5, -55 )
+use_collision = true
+width = 30.0
+height = 10.0
+depth = 30.0
+material = SubResource( 1 )
+
+[node name="Floor8" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -5, 55 )
+use_collision = true
+width = 30.0
+height = 10.0
+depth = 30.0
+material = SubResource( 1 )
+
+[node name="Floor9" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -5, 55 )
+use_collision = true
+width = 30.0
+height = 10.0
+depth = 30.0
+material = SubResource( 1 )
+
+[node name="Slope" type="CSGPolygon" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -65 )
+use_collision = true
+polygon = PoolVector2Array( -25, -10, -25, -5, 5, 0, 5, -5 )
+depth = 80.0
+material = SubResource( 3 )
+
+[node name="Slope2" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 0, 40 )
+use_collision = true
+polygon = PoolVector2Array( -25, -10, -25, -5, 5, 0, 5, -5 )
+depth = 80.0
+material = SubResource( 3 )
+
+[node name="Slope3" type="CSGPolygon" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40, 0, 65 )
+use_collision = true
+polygon = PoolVector2Array( -25, -10, -25, -5, 5, 0, 5, -5 )
+depth = 80.0
+material = SubResource( 3 )
+
+[node name="Slope4" type="CSGPolygon" parent="."]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -65, 0, -40 )
+use_collision = true
+polygon = PoolVector2Array( -25, -10, -25, -5, 5, 0, 5, -5 )
+depth = 80.0
+material = SubResource( 3 )
