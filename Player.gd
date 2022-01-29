@@ -13,6 +13,7 @@ func _input(event):
 		var mouse_motion := event as InputEventMouseMotion
 		look_vec = mouse_motion.relative
 
+
 func _process(dt: float):
 	# Movement
 	var forward := -global_transform.basis.z
@@ -44,10 +45,10 @@ func _process(dt: float):
 
 
 func _physics_process(delta):
-	velocity.y -= 9.8
+	velocity.y -= 9.8  # gravity
 	
 	move_and_slide(velocity, Vector3(0,1,0))
 	velocity.x = 0
 	velocity.z = 0
 	if is_on_floor():
-		velocity.y = 0
+		velocity.y = 0 # reset gravity if we are already on the ground
