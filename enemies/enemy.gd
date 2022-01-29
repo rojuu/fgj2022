@@ -32,7 +32,7 @@ func drop_random_weapon():
 	if len(drop_weapons) == 0:
 		return
 	var weapon_scene = random_element_from_array(drop_weapons)
-	var weapon = weapon_scene.instance()
+	var weapon := weapon_scene.instance() as RigidBody
 	get_tree().root.add_child(weapon)
 	weapon.translation = translation
 
