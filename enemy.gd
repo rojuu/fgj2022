@@ -1,22 +1,27 @@
 extends KinematicBody
 
-var speed = 10
+export var speed = 10
+export var flying = false
+export var gravity = 100
 var velocity = Vector3.ZERO
+var player
+var player_position
+var forward
 
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	var player = get_tree().root.find_node("Player")
+	player =  get_tree().get_nodes_in_group("Player")[0]
 	print(player)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	#look_at()
-	pass
+	player_position = player.translation
+	print(player_position)
+	look_at(player_position, Vector3.UP)
+	forward = -global_transform.basis.z
+	if(flying):
+		forward.y = 0
+	velocity = forward * speed
+	if (!flying):
+			velocity.y -= gravity
+	move_and_slide(velocity, Vector3(0,1,0))
+	if is_on_floor():
+		velocity.y = 0
