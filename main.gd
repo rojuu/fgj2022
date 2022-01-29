@@ -18,14 +18,13 @@ func _ready():
 
 
 func _on_Player_died():
-	td_main.find_node("Player").disconnect("died", self, "_on_Player_died")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$UI.back_to_menu()
-	td_main.queue_free()
-	td_main = null
+	remove_child(td_main)
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+		
 
