@@ -1,4 +1,4 @@
-extends KinematicBody
+extends BaseEnemy
 
 export var speed = 10
 export var flying = false
@@ -10,11 +10,9 @@ var forward
 
 func _ready():
 	player =  get_tree().get_nodes_in_group("Player")[0]
-	print(player)
 
 func _physics_process(delta):
 	player_position = player.translation
-	print(player_position)
 	look_at(player_position, Vector3.UP)
 	forward = -global_transform.basis.z
 	if(flying):

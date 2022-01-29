@@ -67,7 +67,7 @@ func _process(dt: float):
 
 
 func _physics_process(delta):
-	velocity.y -= 9.8  # gravity
+	velocity.y -= 9.8
 	
 	move_and_slide(velocity, Vector3(0,1,0))
 	velocity.x = 0
