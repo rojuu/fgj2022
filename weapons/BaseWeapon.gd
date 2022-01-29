@@ -33,7 +33,8 @@ func pickup(owner):
 func shoot(origin: Vector3, dir: Vector3):
 	var p := $SfxrStreamPlayer as SfxrStreamPlayer
 	p.play_sfx()
-	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players)
+	var weapons = get_tree().get_nodes_in_group("Weapon")
+	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players + weapons)
 	var enemy: Enemy = ray_result.collider as Enemy
 	if enemy != null:
 		enemy.take_damage(damage)

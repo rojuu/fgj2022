@@ -39,19 +39,17 @@ transform = Transform( -0.00340346, 0, -0.999994, 0, 1, 0, 0.999994, 0, -0.00340
 shape = SubResource( 2 )
 
 [node name="Control" type="Control" parent="."]
-margin_left = 8.0
-margin_top = -1.0
-margin_right = 48.0
-margin_bottom = 39.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScoreText" type="Label" parent="Control"]
-margin_left = 6.0
-margin_top = 20.0
-margin_right = 47.0
-margin_bottom = 34.0
+margin_left = 17.0
+margin_top = 13.0
+margin_right = 58.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 2, 0 )
 theme = SubResource( 3 )
 text = "SCORE"
@@ -62,10 +60,10 @@ __meta__ = {
 }
 
 [node name="ScoreDisplay" type="Label" parent="Control"]
-margin_left = 6.0
-margin_top = 34.0
-margin_right = 47.0
-margin_bottom = 48.0
+margin_left = 17.0
+margin_top = 31.0
+margin_right = 58.0
+margin_bottom = 45.0
 rect_pivot_offset = Vector2( 2, 0 )
 theme = SubResource( 3 )
 text = "0"
@@ -77,14 +75,14 @@ __meta__ = {
 }
 
 [node name="StockWeapon2" type="TextureRect" parent="Control"]
-anchor_left = 25.4
-anchor_top = 15.025
-anchor_right = 25.4
-anchor_bottom = 15.025
-margin_left = -80.0001
-margin_top = -80.0
-margin_right = -10.0001
-margin_bottom = -10.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -95.0
+margin_top = -90.0
+margin_right = -25.0
+margin_bottom = -20.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -92,14 +90,14 @@ __meta__ = {
 }
 
 [node name="StockWeapon1" type="TextureRect" parent="Control"]
-anchor_left = 25.4
-anchor_top = 15.025
-anchor_right = 25.4
-anchor_bottom = 15.025
-margin_left = -168.0
-margin_top = -80.0
-margin_right = -98.0001
-margin_bottom = -10.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -179.0
+margin_top = -90.0
+margin_right = -109.0
+margin_bottom = -20.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {

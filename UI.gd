@@ -6,7 +6,7 @@ func _ready():
 	$Control/VBoxContainer/Button.text = "Start"
 
 func back_to_menu(alive_time):
-	$Control/VBoxContainer/Label.text = "You survived for: %s seconds\n" % alive_time
+	$Control/VBoxContainer/Label.text = "You survived for: %.3f seconds\n" % alive_time
 	$Control.visible = true
 	$Control/VBoxContainer/Button.text = "Restart"
 

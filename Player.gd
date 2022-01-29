@@ -4,6 +4,7 @@ signal died(alive_time)
 
 export(float) var move_speed = 30
 export(float) var sensitivity = 6.0
+export(int) var max_queued_weapon_count = 2
 
 export(PackedScene) var default_weapon
 
@@ -15,8 +16,10 @@ onready var weapon_point: Position3D = $Camera/WeaponPoint
 onready var camera: Camera = $Camera
 
 onready var alive_time = 0
+onready var weapon_queue = []
 
 var current_weapon: BaseWeapon
+
 
 func _ready():
 	change_weapon_from_scene(default_weapon)
@@ -27,15 +30,17 @@ func change_weapon_from_scene(weapon_scene: PackedScene):
 
 
 func destroy_current_weapon():
-	if current_weapon != null:
+	if is_instance_valid(current_weapon):
 		camera.remove_child(current_weapon)
 		current_weapon.queue_free()
 		current_weapon = null
 
 
 func eat_current_weapon():
-	# TODO give some yiihaws
 	destroy_current_weapon()
+	if len(weapon_queue) > 0:
+		var weapon = weapon_queue.pop_front()
+		change_weapon(weapon)
 
 
 func change_weapon(weapon: BaseWeapon):
@@ -45,6 +50,7 @@ func change_weapon(weapon: BaseWeapon):
 
 	current_weapon = weapon
 	camera.add_child(current_weapon)
+	current_weapon.visible = true
 	current_weapon.set_translation(weapon_point.translation)
 	current_weapon.set_rotation(weapon_point.rotation)
 	current_weapon.set_scale(weapon_point.scale)
@@ -81,7 +87,7 @@ func _process(dt: float):
 	look_vec = Vector2.ZERO
 
 	# Shooting
-	if Input.is_action_just_pressed("shoot") and current_weapon:
+	if Input.is_action_just_pressed("shoot") and is_instance_valid(current_weapon):
 		var vpc := Vector2(vp_size.x / 2, vp_size.y / 2)
 		var origin := camera.project_ray_origin(vpc)
 		var dir := camera.project_ray_normal(vpc)
@@ -117,4 +123,8 @@ func _on_Area_area_shape_entered(area_rid, area, area_shape_index, local_shape_i
 	if weapon:
 		if current_weapon == null:
 			change_weapon(weapon)
+		elif len(weapon_queue) < max_queued_weapon_count:
+			weapon.visible = false
+			weapon_queue.append(weapon)
+
 

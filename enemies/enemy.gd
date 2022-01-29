@@ -7,6 +7,7 @@ export(float) var speed = 10
 export(bool) var flying = false
 export(float) var gravity = 9.8
 
+export(float) var weapon_drop_chance = 0.3
 export(Array, PackedScene) var drop_weapons
 
 onready var dying := false
@@ -14,8 +15,6 @@ onready var dying := false
 onready var velocity := Vector3.ZERO
 onready var gravity_velocity = 0
 onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
-onready var player_position: Vector3
-onready var forward: Vector3
 
 onready var rng := RandomNumberGenerator.new()
 
@@ -50,7 +49,8 @@ func take_damage(damage: float):
 	$AudioStreamPlayer3D.stop()
 	sprite.modulate = Color.white
 	if dying:
-		drop_random_weapon()
+		if rng.randf() < weapon_drop_chance:
+			drop_random_weapon()
 		queue_free()
 
 
@@ -58,9 +58,8 @@ func _physics_process(delta):
 	if dying:
 		return
 
-	player_position = player.translation
-	look_at(player_position, Vector3.UP)
-	forward = -global_transform.basis.z
+	look_at(player.translation, Vector3.UP)
+	var forward := -global_transform.basis.z
 	if(flying):
 		forward.y = 0
 	velocity = forward * speed

@@ -306,4 +306,13 @@ depth = 80.0
 material = SubResource( 6 )
 
 [node name="Bananger" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4397, 4.46224, -86.3747 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.343, 4.46224, -86.3747 )
+
+[node name="Bananger2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.3187, 4.46224, -87.1194 )
+
+[node name="Bananger3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9122, 4.46224, -86.3747 )
+
+[node name="Bananger4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2072, 4.46224, -86.3747 )

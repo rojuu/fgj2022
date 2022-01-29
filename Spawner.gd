@@ -37,7 +37,7 @@ func spawn_enemy():
 	if stop_everything:
 		return
 	var enemy: Spatial = random_element_from_array(enemy_templates).instance()
-	get_tree().root.add_child(enemy)
+	add_child(enemy)
 	enemy.set_translation(get_random_spawn_point().translation)
 
 

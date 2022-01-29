@@ -9,6 +9,8 @@
 
 [node name="Enemy" type="KinematicBody" groups=["enemy"]]
 script = ExtResource( 2 )
+speed = 30.0
+weapon_drop_chance = 0.4
 drop_weapons = [ ExtResource( 4 ) ]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
