@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "SfxrStreamPlayer",
 "language": "GDScript",
 "path": "res://addons/godot_sfxr/SfxrStreamPlayer.gd"
+}, {
+"base": "Position3D",
+"class": "SpawnPoint",
+"language": "GDScript",
+"path": "res://SpawnPoint.gd"
 } ]
 _global_script_class_icons={
 "GodotSfxr": "",
 "SfxrGenerator": "",
 "SfxrGlobals": "",
-"SfxrStreamPlayer": ""
+"SfxrStreamPlayer": "",
+"SpawnPoint": ""
 }
 
 [application]
