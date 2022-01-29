@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/Pumpkin.png" type="Texture" id=1]
+
+[node name="Sprite3D" type="Sprite3D"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+billboard = 2
+texture = ExtResource( 1 )
