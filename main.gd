@@ -17,9 +17,9 @@ func _ready():
 	$UI.main = self
 
 
-func _on_Player_died():
+func _on_Player_died(alive_time):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	$UI.back_to_menu()
+	$UI.back_to_menu(alive_time)
 	remove_child(td_main)
 
 

@@ -1,6 +1,6 @@
 extends KinematicBody
 
-signal died
+signal died(alive_time)
 
 export(float) var move_speed = 30
 export(float) var sensitivity = 6.0
@@ -14,7 +14,13 @@ onready var weapon_point: Position3D = $Camera/WeaponPoint
 
 onready var camera: Camera = $Camera
 
+onready var alive_time = 0
+
 var current_weapon: BaseWeapon
+
+func _ready():
+	change_weapon_from_scene(default_weapon)
+
 
 func change_weapon_from_scene(weapon_scene: PackedScene):
 	change_weapon(weapon_scene.instance())
@@ -45,10 +51,6 @@ func change_weapon(weapon: BaseWeapon):
 	current_weapon.pickup(self)
 
 
-func _ready():
-	change_weapon_from_scene(default_weapon)
-
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		var mouse_motion := event as InputEventMouseMotion
@@ -56,6 +58,8 @@ func _input(event):
 
 
 func _process(dt: float):
+	alive_time += dt
+	
 	# Movement
 	var forward := -global_transform.basis.z
 	var right := global_transform.basis.x
@@ -100,7 +104,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(idx)
 		var enemy: BaseEnemy = collision.collider as BaseEnemy
 		if enemy:
-			emit_signal("died")
+			emit_signal("died", alive_time)
 
 	velocity.x = 0
 	velocity.z = 0

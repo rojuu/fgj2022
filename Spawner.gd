@@ -19,7 +19,7 @@ func _ready():
 	spawn_enemy()
 	spawn_loop()
 	
-func _on_Player_died():
+func _on_Player_died(alive_time):
 	stop_everything = true
 	pass
 
