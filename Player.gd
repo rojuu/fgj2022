@@ -51,12 +51,15 @@ func change_weapon(weapon: BaseWeapon):
 		parent.remove_child(weapon)
 
 	current_weapon = weapon
+	current_weapon.visible = false
 	camera.add_child(current_weapon)
-	current_weapon.visible = true
 	current_weapon.set_translation(weapon_point.translation)
 	current_weapon.set_rotation(weapon_point.rotation)
 	current_weapon.set_scale(weapon_point.scale)
 	current_weapon.pickup(self)
+	yield(get_tree().create_timer(0.05), "timeout")
+	current_weapon.visible = true
+
 
 
 func _input(event):
@@ -100,7 +103,11 @@ func _process(dt: float):
 
 	# Kill if falls off the platform
 	if translation.y < -50.0:
-		print("DEAD")
+		die()
+
+
+func die():
+	emit_signal("died", alive_time)
 
 
 func _physics_process(delta):
@@ -112,7 +119,7 @@ func _physics_process(delta):
 		var collision = get_slide_collision(idx)
 		var enemy: Enemy = collision.collider as Enemy
 		if enemy:
-			emit_signal("died", alive_time)
+			die()
 
 	velocity.x = 0
 	velocity.z = 0
@@ -125,7 +132,7 @@ func _on_Area_area_shape_entered(area_rid, area, area_shape_index, local_shape_i
 	if weapon:
 		if current_weapon == null:
 			change_weapon(weapon)
-		elif len(weapon_queue) < max_queued_weapon_count:
+		elif len(weapon_queue) < max_queued_weapon_count and weapon != current_weapon:
 			weapon.visible = false
 			weapon_queue.append(weapon)
 
