@@ -21,6 +21,11 @@ func build_sfxr_buffer():
 	p._build_buffer()
 
 
+func get_texture():
+	var sprite := $Sprite3D as Sprite3D
+	return sprite.texture
+
+
 func pickup(owner):
 	sleeping = true
 	var c:= $CollisionShape as CollisionShape

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/BaseWeapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://score.gd" type="Script" id=3]
 [ext_resource path="res://images/uiwpnblank.png" type="Texture" id=4]
+[ext_resource path="res://HUD.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 3.0
@@ -38,14 +39,15 @@ transform = Transform( -0.00340346, 0, -0.999994, 0, 1, 0, 0.999994, 0, -0.00340
 [node name="PickupArea" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
 
-[node name="Control" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreText" type="Label" parent="Control"]
+[node name="ScoreText" type="Label" parent="HUD"]
 margin_left = 17.0
 margin_top = 13.0
 margin_right = 58.0
@@ -59,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreDisplay" type="Label" parent="Control"]
+[node name="ScoreDisplay" type="Label" parent="HUD"]
 margin_left = 17.0
 margin_top = 31.0
 margin_right = 58.0
@@ -74,7 +76,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StockWeapon2" type="TextureRect" parent="Control"]
+[node name="StockWeapon0_bg" type="TextureRect" parent="HUD"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -89,16 +91,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StockWeapon1" type="TextureRect" parent="Control"]
+[node name="StockWeapon0" type="TextureRect" parent="HUD"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -179.0
+margin_left = -79.0
+margin_top = -74.0
+margin_right = -41.0
+margin_bottom = -36.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StockWeapon1_bg" type="TextureRect" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -180.0
 margin_top = -90.0
-margin_right = -109.0
+margin_right = -110.0
 margin_bottom = -20.0
 texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StockWeapon1" type="TextureRect" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -74.0
+margin_right = -126.0
+margin_bottom = -36.0
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

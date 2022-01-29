@@ -1,5 +1,7 @@
 extends KinematicBody
 
+class_name Player
+
 signal died(alive_time)
 
 export(float) var move_speed = 30
