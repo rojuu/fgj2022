@@ -31,5 +31,6 @@ func shoot(origin: Vector3, dir: Vector3):
 func _process(delta):
 	if picked_up: return
 	running_time += delta
-	translation.y = original_translation.y + sin(running_time * 10) * 5
+	translation.y = original_translation.y + sin(running_time * 3) * 2
+	rotate_y(-delta * 2)
 	
