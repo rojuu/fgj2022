@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/BaseWeapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://score.gd" type="Script" id=3]
+[ext_resource path="res://images/uiwpnblank.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 3.0
@@ -46,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control"]
+[node name="ScoreText" type="Label" parent="Control"]
 margin_left = 6.0
 margin_top = 20.0
 margin_right = 47.0
@@ -60,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Control"]
+[node name="ScoreDisplay" type="Label" parent="Control"]
 margin_left = 6.0
 margin_top = 34.0
 margin_right = 47.0
@@ -71,6 +72,36 @@ text = "0"
 align = 1
 valign = 1
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StockWeapon2" type="TextureRect" parent="Control"]
+anchor_left = 25.4
+anchor_top = 15.025
+anchor_right = 25.4
+anchor_bottom = 15.025
+margin_left = -80.0001
+margin_top = -80.0
+margin_right = -10.0001
+margin_bottom = -10.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StockWeapon1" type="TextureRect" parent="Control"]
+anchor_left = 25.4
+anchor_top = 15.025
+anchor_right = 25.4
+anchor_bottom = 15.025
+margin_left = -168.0
+margin_top = -80.0
+margin_right = -98.0001
+margin_bottom = -10.0
+texture = ExtResource( 4 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
