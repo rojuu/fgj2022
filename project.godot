@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "BaseWeapon",
+"language": "GDScript",
+"path": "res://weapons/BaseWeapon.gd"
+}, {
 "base": "EditorPlugin",
 "class": "GodotSfxr",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://SpawnPoint.gd"
 } ]
 _global_script_class_icons={
+"BaseWeapon": "",
 "GodotSfxr": "",
 "SfxrGenerator": "",
 "SfxrGlobals": "",

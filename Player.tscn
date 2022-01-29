@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://weapons/Bananger.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 3.0
@@ -8,6 +9,7 @@ height = 3.0
 [node name="Player" type="KinematicBody" groups=["Player"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31169, 0 )
 script = ExtResource( 1 )
+default_weapon = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -20,3 +22,6 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54508, 0 )
 fov = 90.0
 far = 500.0
+
+[node name="WeaponPoint" type="Position3D" parent="Camera"]
+transform = Transform( -0.00340346, 0, -0.999994, 0, 1, 0, 0.999994, 0, -0.00340346, 2.482, -1.54508, -3.403 )
