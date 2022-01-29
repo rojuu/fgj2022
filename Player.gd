@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal died
+
 export(float) var move_speed = 30
 export(float) var sensitivity = 6.0
 
@@ -94,6 +96,12 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector3(0,1,0))
 	
+	for idx in range(get_slide_count()):
+		var collision = get_slide_collision(idx)
+		var enemy: BaseEnemy = collision.collider as BaseEnemy
+		if enemy:
+			emit_signal("died")
+
 	velocity.x = 0
 	velocity.z = 0
 	if is_on_floor():

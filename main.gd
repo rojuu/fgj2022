@@ -1,9 +1,28 @@
 extends Node
 
-func _ready():
-	# Hide the mouse and lock to screen
-	# to show the mouse again do Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+onready var td_main_scene: PackedScene = preload("res://3d_main.tscn")
+
+var td_main: Node
+
+func restart():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	td_main = td_main_scene.instance()
+	add_child(td_main)
+	
+	td_main.find_node("Player").connect("died", self, "_on_Player_died")
+
+
+func _ready():
+	$UI.main = self
+
+
+func _on_Player_died():
+	td_main.find_node("Player").disconnect("died", self, "_on_Player_died")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$UI.back_to_menu()
+	td_main.queue_free()
+	td_main = null
 
 
 func _process(delta):
