@@ -9,16 +9,22 @@ onready var players = get_tree().get_nodes_in_group("Player")
 onready var running_time: float = 0
 onready var picked_up: bool = false
 
+var sfxr_mutex
+var sfxr_player: SfxrStreamPlayer 
+
 
 func _ready():
+	sfxr_mutex = Mutex.new()
+	sfxr_player = $SfxrStreamPlayer
 	var t := Thread.new()
 	t.start(self, "build_sfxr_buffer")
 	set_scale(Vector3.ONE * 10)
 
 
 func build_sfxr_buffer():
-	var p := $SfxrStreamPlayer as SfxrStreamPlayer
-	p._build_buffer()
+	sfxr_mutex.lock()
+	sfxr_player._build_buffer()
+	sfxr_mutex.unlock()
 
 
 func get_texture():
@@ -36,8 +42,9 @@ func pickup(owner):
 
 
 func shoot(origin: Vector3, dir: Vector3):
-	var p := $SfxrStreamPlayer as SfxrStreamPlayer
-	p.play_sfx()
+	sfxr_mutex.lock()
+	sfxr_player.play_sfx()
+	sfxr_mutex.unlock()
 	var weapons = get_tree().get_nodes_in_group("Weapon")
 	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players + weapons)
 	var enemy: Enemy = ray_result.collider as Enemy
