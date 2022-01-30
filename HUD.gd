@@ -1,8 +1,8 @@
 extends Control
 
 
-onready var slot0: TextureRect = $StockWeapon0
-onready var slot1: TextureRect = $StockWeapon1
+onready var slot1: TextureRect = $StockWeapon0
+onready var slot0: TextureRect = $StockWeapon1
 
 func update_slot_texture(player, slot, idx):
 	if len(player.weapon_queue) > idx:

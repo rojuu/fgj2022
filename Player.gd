@@ -8,7 +8,12 @@ export(float) var move_speed = 30
 export(float) var sensitivity = 6.0
 export(int) var max_queued_weapon_count = 2
 
+export(float) var speed2x_speed_multiplier = 1.3
+export(float) var autofire_delay = 0.1
+
 export(PackedScene) var default_weapon
+
+onready var cur_autofire_delay = 0
 
 onready var velocity: Vector3 = Vector3.ZERO
 onready var look_vec: Vector2 = Vector2.ZERO
@@ -22,6 +27,8 @@ onready var weapon_queue = []
 
 var current_weapon: BaseWeapon
 
+onready var active_powerups = []
+onready var autofire_powerup: Powerup = null
 
 func _ready():
 	change_weapon_from_scene(default_weapon)
@@ -39,10 +46,19 @@ func destroy_current_weapon():
 
 
 func eat_current_weapon():
-	destroy_current_weapon()
-	if len(weapon_queue) > 0:
-		var weapon = weapon_queue.pop_front()
-		change_weapon(weapon)
+	if is_instance_valid(current_weapon):
+		var powerup: Powerup = current_weapon.get_powerup()
+		if powerup.type == Powerup.Type.AUTOFIRE:
+			if autofire_powerup:
+				autofire_powerup.time += powerup.time
+			else:
+				autofire_powerup = powerup
+		else:
+			active_powerups.append(powerup)
+		destroy_current_weapon()
+		if len(weapon_queue) > 0:
+			var weapon = weapon_queue.pop_front()
+			change_weapon(weapon)
 
 
 func change_weapon(weapon: BaseWeapon):
@@ -76,11 +92,34 @@ func _process(dt: float):
 	var forward := -global_transform.basis.z
 	var right := global_transform.basis.x
 	
-	velocity -= right * (move_speed if Input.is_action_pressed("move_left") else 0)
-	velocity += right * (move_speed if Input.is_action_pressed("move_right") else 0)
+	var speed = move_speed
+	var to_remove_powerups = []
+	for idx in range(len(active_powerups)):
+		var powerup = active_powerups[idx]
+		if powerup.time <= 0:
+			to_remove_powerups.append(idx)
+		else:
+			powerup.time -= dt
+			match powerup.type:
+				Powerup.Type.SPEEDX2:
+					speed *= speed2x_speed_multiplier
+				_: pass
+	for i in to_remove_powerups:
+		active_powerups.remove(i)
+		
+	var autofire := false
+	if autofire_powerup:
+		if autofire_powerup.time <= 0:
+			autofire_powerup = null
+		else:
+			autofire = true
+			autofire_powerup.time -= dt
 	
-	velocity += forward * (move_speed if Input.is_action_pressed("move_forwards") else 0)
-	velocity -= forward * (move_speed if Input.is_action_pressed("move_backwards") else 0)
+	velocity -= right * (speed if Input.is_action_pressed("move_left") else 0)
+	velocity += right * (speed if Input.is_action_pressed("move_right") else 0)
+	
+	velocity += forward * (speed if Input.is_action_pressed("move_forwards") else 0)
+	velocity -= forward * (speed if Input.is_action_pressed("move_backwards") else 0)
 	
 	# Mouse look
 	var vp_size := get_viewport().size
@@ -93,11 +132,19 @@ func _process(dt: float):
 	look_vec = Vector2.ZERO
 
 	# Shooting
-	if Input.is_action_just_pressed("shoot") and is_instance_valid(current_weapon):
+	
+	if is_instance_valid(current_weapon) and (
+		Input.is_action_just_pressed("shoot") or
+		(autofire and cur_autofire_delay <= 0)
+	):
+		cur_autofire_delay = autofire_delay
 		var vpc := Vector2(vp_size.x / 2, vp_size.y / 2)
 		var origin := camera.project_ray_origin(vpc)
 		var dir := camera.project_ray_normal(vpc)
 		current_weapon.shoot(origin, dir)
+
+	if cur_autofire_delay > 0:
+		cur_autofire_delay -= dt
 
 	if Input.is_action_just_pressed("eat"):
 		eat_current_weapon()

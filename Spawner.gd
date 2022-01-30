@@ -1,7 +1,7 @@
 extends Node
 
-export(float) var spawn_time_min = 1.0
-export(float) var spawn_time_max = 1.0
+export(float) var spawn_time_min = 2.0
+export(float) var spawn_time_max = 2.0
 
 export(Array, PackedScene) var enemy_templates 
 
@@ -13,7 +13,7 @@ onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
 var stop_everything = false
 
 func _ready():
-	rng.seed = OS.get_unix_time()
+	rng.randomize()
 	player.connect("died", self, "_on_Player_died")
 	
 	spawn_enemy()
@@ -39,6 +39,10 @@ func spawn_enemy():
 	var enemy: Spatial = random_element_from_array(enemy_templates).instance()
 	add_child(enemy)
 	enemy.set_translation(get_random_spawn_point().translation)
+	if (spawn_time_min >= 0.3):
+		spawn_time_min -= 0.1
+		spawn_time_max -= 0.1
+	print(spawn_time_max)
 
 
 func spawn_loop():
