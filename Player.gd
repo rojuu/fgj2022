@@ -110,6 +110,10 @@ func _input(event):
 func _process(dt: float):
 	alive_time += dt
 	
+	if !current_weapon and len(weapon_queue) > 0:
+		var weapon = weapon_queue.pop_front()
+		change_weapon(weapon)
+
 	var forward := -global_transform.basis.z
 	var right := global_transform.basis.x
 	
