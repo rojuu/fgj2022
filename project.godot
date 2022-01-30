@@ -71,6 +71,7 @@ _global_script_class_icons={
 config/name="fgj2022"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [editor_plugins]
 
