@@ -47,7 +47,7 @@ func drop_random_weapon():
 		return
 	var weapon_scene = random_element_from_array(drop_weapons)
 	var weapon := weapon_scene.instance() as RigidBody
-	get_tree().root.add_child(weapon)
+	get_parent().add_child(weapon)
 	weapon.translation = translation
 
 
@@ -70,9 +70,12 @@ func take_damage(damage: float, should_do_explody: bool):
 	playRandomHitSound()
 	#$AudioStreamPlayer3D.stop()
 	sprite.modulate = Color.white
+	
 	if dying:
 		if rng.randf() < weapon_drop_chance:
 			drop_random_weapon()
+		$Sprite3D.visible = false
+		yield(get_tree().create_timer(2), "timeout")
 		queue_free()
 
 
