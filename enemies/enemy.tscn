@@ -15,16 +15,16 @@ _data = [ Vector2( 0, 0.969318 ), 0.0, 0.0, 0, 0, Vector2( 0.048913, 0.996591 ),
 curve = SubResource( 2 )
 
 [sub_resource type="ParticlesMaterial" id=4]
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, -1, 0 )
-initial_velocity = 15.0
+direction = Vector3( 0, 1, 0 )
+spread = 15.0
+gravity = Vector3( 0, -500, 0 )
+initial_velocity = 100.0
 initial_velocity_random = 0.1
 angular_velocity = 360.0
 angular_velocity_random = 1.0
 angle = 360.0
 angle_random = 1.0
-scale = 5.0
+scale = 10.0
 scale_random = 1.0
 scale_curve = SubResource( 3 )
 
@@ -58,6 +58,18 @@ amount = 50
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="DeathVFX" type="Particles" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.9
 randomness = 1.0
 local_coords = false
 draw_order = 2

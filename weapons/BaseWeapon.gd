@@ -8,7 +8,9 @@ onready var players = get_tree().get_nodes_in_group("Player")
 
 onready var running_time: float = 0
 onready var picked_up: bool = false
+
 onready var rng := RandomNumberGenerator.new()
+onready var shootvfx = get_node("ShootVFX")
 
 var sfxr_mutex
 var sfxr_player: SfxrStreamPlayer 
@@ -23,6 +25,7 @@ func _ready():
 	var t := Thread.new()
 	t.start(self, "build_sfxr_buffer")
 	set_scale(Vector3.ONE * 10)
+	shootvfx.emitting = false
 
 
 func build_sfxr_buffer():
@@ -58,6 +61,7 @@ func pickup(owner):
 
 
 func shoot(origin: Vector3, dir: Vector3):
+	shootvfx.restart()
 	sfxr_mutex.lock()
 	sfxr_player.play_sfx()
 	sfxr_mutex.unlock()

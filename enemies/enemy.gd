@@ -19,10 +19,12 @@ onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
 onready var rng := RandomNumberGenerator.new()
 
 onready var hitvfx = get_node("HitVFX")
+onready var deathvfx = get_node("DeathVFX")
 
 func _ready():
 	hitvfx.emitting = false
 	rng.randomize()
+	deathvfx.emitting = false
 
 
 func random_element_from_array(arr):
@@ -45,10 +47,11 @@ func take_damage(damage: float):
 	health -= damage
 	if health <= 0:
 		dying = true
+		deathvfx.restart()
 	var sprite := $Sprite3D as Sprite3D
 	sprite.modulate = Color.red
 	$AudioStreamPlayer3D.play()
-	hitvfx.emitting = true
+	hitvfx.restart()
 	yield(get_tree().create_timer(0.3), "timeout")
 	$AudioStreamPlayer3D.stop()
 	sprite.modulate = Color.white
