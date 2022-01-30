@@ -13,6 +13,4 @@
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource( 5 )
-spawn_time_min = 3.0
-spawn_time_max = 5.0
 enemy_templates = [ ExtResource( 3 ) ]

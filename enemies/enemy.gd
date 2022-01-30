@@ -18,7 +18,10 @@ onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
 
 onready var rng := RandomNumberGenerator.new()
 
+onready var hitvfx = get_node("HitVFX")
+
 func _ready():
+	hitvfx.emitting = false
 	rng.seed = OS.get_unix_time()
 
 
@@ -45,6 +48,7 @@ func take_damage(damage: float):
 	var sprite := $Sprite3D as Sprite3D
 	sprite.modulate = Color.red
 	$AudioStreamPlayer3D.play()
+	hitvfx.emitting = true
 	yield(get_tree().create_timer(0.3), "timeout")
 	$AudioStreamPlayer3D.stop()
 	sprite.modulate = Color.white
