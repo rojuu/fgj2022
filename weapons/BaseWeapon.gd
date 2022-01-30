@@ -14,7 +14,7 @@ onready var picked_up: bool = false
 
 onready var rng := RandomNumberGenerator.new()
 onready var shootvfx = get_node("ShootVFX")
-onready var shootaudio = 
+var audiorng = RandomNumberGenerator.new()
 
 
 var stop_everything = false
@@ -57,6 +57,7 @@ func pickup(owner):
 
 func shoot(origin: Vector3, dir: Vector3, should_do_explody: bool):
 	shootvfx.restart()
+	playRandomShootSound()
 	var weapons = get_tree().get_nodes_in_group("Weapon")
 	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players + weapons)
 	var enemy: Enemy = ray_result.collider as Enemy
@@ -70,4 +71,10 @@ func _process(delta):
 	running_time += delta
 	$Sprite3D.translation.y = 0.5 + sin(running_time * 3) * 0.5
 	$Sprite3D.rotate_y(-delta * 2)
-	
+
+func playRandomShootSound():
+	var random_int = audiorng.randi_range(1, 3)               # pick a valid random number
+	var snd = get_node("ShootSound"+str(random_int))  # select a sound
+	snd.play()
+	yield(get_tree().create_timer(0.05), "timeout")
+	snd.stop()
