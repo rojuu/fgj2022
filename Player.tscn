@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://weapons/BaseWeapon.tscn" type="PackedScene" id=2]
@@ -6,9 +6,22 @@
 [ext_resource path="res://images/uiwpnblank.png" type="Texture" id=4]
 [ext_resource path="res://HUD.gd" type="Script" id=5]
 [ext_resource path="res://images/b88fb507d9b32602662316f753825094.png" type="Texture" id=6]
+[ext_resource path="res://sprites/powerups/power_speed.png" type="Texture" id=7]
+[ext_resource path="res://sprites/powerups/power_explosion.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 3.0
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 7 )
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.288043, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.516304, 1 ), -2.61125e-07, -2.61125e-07, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -18,16 +31,17 @@ curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=6]
 direction = Vector3( 0, 1, 0 )
-spread = 5.0
+spread = 1.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 initial_velocity_random = 0.5
 angular_velocity = 1.0
-angle = 360.0
 angle_random = 1.0
 scale = 0.2
-scale_random = 1.0
+scale_random = 0.2
 scale_curve = SubResource( 5 )
+
+[sub_resource type="QuadMesh" id=10]
 
 [sub_resource type="SpatialMaterial" id=7]
 flags_transparent = true
@@ -42,6 +56,20 @@ albedo_texture = ExtResource( 6 )
 
 [sub_resource type="QuadMesh" id=8]
 material = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="QuadMesh" id=12]
+material = SubResource( 11 )
 
 [sub_resource type="SphereShape" id=2]
 radius = 3.71119
@@ -68,21 +96,55 @@ far = 500.0
 [node name="WeaponPoint" type="Position3D" parent="Camera"]
 transform = Transform( -0.00340346, 0, -0.999994, 0, 1, 0, 0.999994, 0, -0.00340346, 2.482, -1.54508, -3.403 )
 
-[node name="PowerupLeft" type="Particles" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -1.5, -0.7 )
+[node name="SpeedPowerupLeft" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, -1.5, -0.7 )
+material_override = SubResource( 9 )
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="SpeedPowerupRight" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, -1.5, -0.7 )
+material_override = SubResource( 9 )
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 10 )
+
+[node name="AutoPowerupLeft" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, -1.5, -0.7 )
 emitting = false
 amount = 20
 lifetime = 2.0
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
 
-[node name="PowerupRight" type="Particles" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -1.5, -0.7 )
+[node name="AutoPowerupRight" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, -1.5, -0.7 )
 emitting = false
 amount = 20
 lifetime = 2.0
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
+
+[node name="BoomPowerupLeft" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, -1.5, -0.7 )
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="BoomPowerupLeft2" type="Particles" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, -1.5, -0.7 )
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 12 )
 
 [node name="Area" type="Area" parent="."]
 

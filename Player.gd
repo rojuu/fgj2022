@@ -68,7 +68,7 @@ func eat_current_weapon():
 		if len(weapon_queue) > 0:
 			var weapon = weapon_queue.pop_front()
 			change_weapon(weapon)
-	powerupleft.emitting = true
+	powerupleft.emiwtting = true
 	powerupright.emitting = true
 
 
