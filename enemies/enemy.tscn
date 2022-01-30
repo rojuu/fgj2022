@@ -59,10 +59,10 @@ curve = SubResource( 7 )
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 40.0
+initial_velocity = 75.0
 angular_velocity = 360.0
 angular_velocity_random = 1.0
-scale = 10.0
+scale = 20.0
 scale_curve = SubResource( 8 )
 
 [sub_resource type="SpatialMaterial" id=10]
@@ -74,7 +74,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_color = Color( 0.603922, 1, 0, 1 )
+albedo_color = Color( 1, 0.552941, 0, 1 )
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="QuadMesh" id=11]
@@ -173,6 +173,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="ExplodeArea"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="DebugViewport_3D" type="Sprite3D" parent="."]

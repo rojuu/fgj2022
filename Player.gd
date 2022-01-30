@@ -36,6 +36,8 @@ var speed_fx = {}
 var auto_fx = {}
 var boom_fx = {}
 
+var rng = RandomNumberGenerator.new()
+
 
 func _ready():
 	speed_fx["left"] = $Camera/SpeedPowerupLeft as Particles
@@ -78,6 +80,7 @@ func eat_current_weapon():
 		if len(weapon_queue) > 0:
 			var weapon = weapon_queue.pop_front()
 			change_weapon(weapon)
+		playRandomEatSound()
 
 
 func change_weapon(weapon: BaseWeapon):
@@ -217,5 +220,12 @@ func _on_Area_area_shape_entered(area_rid, area, area_shape_index, local_shape_i
 		elif len(weapon_queue) < max_queued_weapon_count and weapon != current_weapon:
 			weapon.visible = false
 			weapon_queue.append(weapon)
+
+func playRandomEatSound():
+	var random_int = rng.randi_range(1, 4)               # pick a valid random number
+	var snd = get_node("Eat"+str(random_int))  # select a sound
+	snd.play()
+	yield(get_tree().create_timer(0.2), "timeout")
+	snd.stop()
 
 
