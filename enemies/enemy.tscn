@@ -89,7 +89,6 @@ viewport_path = NodePath("DebugViewport")
 [node name="Enemy" type="KinematicBody" groups=["enemy"]]
 collision_layer = 3
 script = ExtResource( 2 )
-speed = 30.0
 weapon_drop_chance = 0.4
 drop_weapons = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ]
 
