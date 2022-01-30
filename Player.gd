@@ -58,7 +58,8 @@ func change_weapon(weapon: BaseWeapon):
 	current_weapon.set_scale(weapon_point.scale)
 	current_weapon.pickup(self)
 	yield(get_tree().create_timer(0.05), "timeout")
-	current_weapon.visible = true
+	if is_instance_valid(current_weapon):
+		current_weapon.visible = true
 
 
 
