@@ -36,22 +36,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
-margin_top = 195.0
+[node name="Higscore" type="Label" parent="Control/VBoxContainer"]
+margin_top = 186.0
 margin_right = 340.0
-margin_bottom = 209.0
+margin_bottom = 200.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_top = 204.0
+margin_right = 340.0
+margin_bottom = 218.0
 align = 1
 
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
-margin_top = 213.0
+margin_top = 222.0
 margin_right = 340.0
-margin_bottom = 233.0
+margin_bottom = 242.0
 text = "Restart"
 
 [node name="Guide" type="Label" parent="Control/VBoxContainer"]
-margin_top = 237.0
+margin_top = 246.0
 margin_right = 340.0
-margin_bottom = 404.0
+margin_bottom = 413.0
 text = "
 Tutorial:
 

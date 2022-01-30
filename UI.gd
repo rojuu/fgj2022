@@ -1,14 +1,23 @@
 extends Control
 
 var main
+var highscore: float
+
+func update_highscore_ui():
+	$Control/VBoxContainer/Higscore.text = "Highscore: %.3f" % highscore
 
 func _ready():
+	update_highscore_ui()
 	$Control/VBoxContainer/Button.text = "Start"
 
-func back_to_menu(alive_time):
+
+func back_to_menu(alive_time, highscore_):
+	highscore = highscore_
+	update_highscore_ui()
 	$Control/VBoxContainer/Label.text = "You survived for: %.3f seconds\n" % alive_time
 	$Control.visible = true
 	$Control/VBoxContainer/Button.text = "Restart"
+
 
 func _draw():
 	var vp_size := get_viewport().size
