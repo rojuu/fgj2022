@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://images/b88fb507d9b32602662316f753825094.png" type="Texture" id=1]
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=2]
@@ -42,6 +42,37 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=6]
 material = SubResource( 5 )
 
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.402174, 0.994318 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 40.0
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+scale = 10.0
+scale_curve = SubResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.603922, 1, 0, 1 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
+
 [node name="Enemy" type="KinematicBody" groups=["enemy"]]
 script = ExtResource( 2 )
 speed = 30.0
@@ -63,6 +94,18 @@ local_coords = false
 draw_order = 2
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 6 )
+
+[node name="ExplodeVFX" type="Particles" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
 
 [node name="DeathVFX" type="Particles" parent="."]
 emitting = false

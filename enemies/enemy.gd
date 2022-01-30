@@ -20,11 +20,13 @@ onready var rng := RandomNumberGenerator.new()
 
 onready var hitvfx = get_node("HitVFX")
 onready var deathvfx = get_node("DeathVFX")
+onready var explodevfx = get_node("ExplodeVFX")
 
 func _ready():
-	hitvfx.emitting = false
 	rng.randomize()
+	hitvfx.emitting = false
 	deathvfx.emitting = false
+	explodevfx.emitting = false
 
 
 func random_element_from_array(arr):
