@@ -2,8 +2,8 @@ extends KinematicBody
 
 class_name Enemy
 
-export(float) var health = 6
-export(float) var speed = 10
+var health = 6
+var speed = 30
 export(bool) var flying = false
 export(float) var gravity = 9.8
 
@@ -32,6 +32,9 @@ func _ready():
 	deathvfx.emitting = false
 	explodevfx.emitting = false
 	audiorng.randomize()
+	if(flying):
+		health = 3
+		speed = 45
 
 
 func random_element_from_array(arr):
@@ -83,8 +86,8 @@ func _physics_process(delta):
 
 	look_at(player.translation, Vector3.UP)
 	var forward := -global_transform.basis.z
-	if(flying):
-		forward.y = 0
+	#if(flying):
+		#forward.y = 0
 	velocity = forward * speed
 	if (!flying):
 			gravity_velocity -= gravity
