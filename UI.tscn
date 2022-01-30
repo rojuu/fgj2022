@@ -29,23 +29,39 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -100.0
-margin_right = 100.0
+margin_left = -170.0
+margin_right = 170.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
-margin_top = 281.0
-margin_right = 200.0
-margin_bottom = 295.0
+margin_top = 195.0
+margin_right = 340.0
+margin_bottom = 209.0
 align = 1
 
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
-margin_top = 299.0
-margin_right = 200.0
-margin_bottom = 319.0
+margin_top = 213.0
+margin_right = 340.0
+margin_bottom = 233.0
 text = "Restart"
+
+[node name="Guide" type="Label" parent="Control/VBoxContainer"]
+margin_top = 237.0
+margin_right = 340.0
+margin_bottom = 404.0
+text = "
+Tutorial:
+
+Press E to eat your weapon
+Different weapons give different powerups
+
+Click left mouse button to shoot
+Shoot enemies to kill them
+
+Stay alive"
+align = 1
 
 [connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="_on_Button_pressed"]
