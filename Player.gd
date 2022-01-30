@@ -153,8 +153,6 @@ func _process(dt: float):
 	boom_fx["right"].emitting = explosions
 	boom_fx["left"].emitting = explosions
 	
-	print(has_speed, " ", autofire, " ", explosions)
-	
 	velocity -= right * (speed if Input.is_action_pressed("move_left") else 0)
 	velocity += right * (speed if Input.is_action_pressed("move_right") else 0)
 	
