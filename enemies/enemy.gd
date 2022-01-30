@@ -25,6 +25,7 @@ onready var explodevfx = get_node("ExplodeVFX")
 onready var enemies_in_explode_range = []
 
 var audiorng = RandomNumberGenerator.new()
+var ambientsfx
 
 func _ready():
 	rng.randomize()
@@ -32,7 +33,7 @@ func _ready():
 	deathvfx.emitting = false
 	explodevfx.emitting = false
 	audiorng.randomize()
-	var ambientsfx = get_node("AmbientSound")
+	ambientsfx = get_node("AmbientSound")
 	ambientsfx.play()
 	if(flying):
 		health = 3
@@ -66,6 +67,7 @@ func take_damage(damage: float, should_do_explody: bool):
 	if health <= 0:
 		dying = true
 		deathvfx.restart()
+		ambientsfx.stop()
 	var sprite := $Sprite3D as Sprite3D
 	sprite.modulate = Color.red
 	hitvfx.restart()
