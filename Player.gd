@@ -229,7 +229,7 @@ func playRandomEatSound():
 	var random_int = rng.randi_range(1, 4)               # pick a valid random number
 	var snd = get_node("Eat"+str(random_int))  # select a sound
 	snd.play()
-	yield(get_tree().create_timer(0.2), "timeout")
-	snd.stop()
+	#yield(get_tree().create_timer(0.2), "timeout")
+	#snd.stop()
 
 

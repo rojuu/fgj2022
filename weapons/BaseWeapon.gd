@@ -76,5 +76,5 @@ func playRandomShootSound():
 	var random_int = audiorng.randi_range(1, 3)               # pick a valid random number
 	var snd = get_node("ShootSound"+str(random_int))  # select a sound
 	snd.play()
-	yield(get_tree().create_timer(0.05), "timeout")
-	snd.stop()
+	#yield(get_tree().create_timer(0.05), "timeout")
+	#snd.stop()
