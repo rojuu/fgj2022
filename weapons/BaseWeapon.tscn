@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://weapons/BaseWeapon.gd" type="Script" id=1]
 [ext_resource path="res://sprites/chocolate.png" type="Texture" id=2]
 [ext_resource path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" type="Script" id=3]
 [ext_resource path="res://images/b88fb507d9b32602662316f753825094.png" type="Texture" id=4]
+[ext_resource path="res://sound/shoot_1.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sound/shoot_3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sound/shoot_2.ogg" type="AudioStream" id=7]
 
 [sub_resource type="SphereShape" id=1]
-
-[sub_resource type="AudioStreamGenerator" id=2]
-buffer_length = 0.151814
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.619575, 0.499038, 0.135286 )
@@ -60,7 +60,7 @@ monitoring = false
 shape = SubResource( 1 )
 
 [node name="SfxrStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource( 2 )
+stream = ExtResource( 5 )
 script = ExtResource( 3 )
 wave/type = 3
 sample_params/sound_vol = 0.1
@@ -102,3 +102,12 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
+
+[node name="ShootSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ShootSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="ShootSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

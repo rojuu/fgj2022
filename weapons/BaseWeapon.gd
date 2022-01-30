@@ -14,28 +14,15 @@ onready var picked_up: bool = false
 
 onready var rng := RandomNumberGenerator.new()
 onready var shootvfx = get_node("ShootVFX")
+onready var shootaudio = 
 
-var sfxr_mutex
-var sfxr_player: SfxrStreamPlayer 
 
 var stop_everything = false
 
 func _ready():
 	rng.randomize()
-
-	sfxr_mutex = Mutex.new()
-	sfxr_player = $SfxrStreamPlayer
-	var t := Thread.new()
-	t.start(self, "build_sfxr_buffer")
 	set_scale(Vector3.ONE * 10)
 	shootvfx.emitting = false
-
-
-func build_sfxr_buffer():
-	sfxr_mutex.lock()
-	sfxr_player._build_buffer()
-	sfxr_mutex.unlock()
-
 
 func get_texture():
 	var sprite := $Sprite3D as Sprite3D
@@ -70,9 +57,6 @@ func pickup(owner):
 
 func shoot(origin: Vector3, dir: Vector3, should_do_explody: bool):
 	shootvfx.restart()
-	sfxr_mutex.lock()
-	sfxr_player.play_sfx()
-	sfxr_mutex.unlock()
 	var weapons = get_tree().get_nodes_in_group("Weapon")
 	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players + weapons)
 	var enemy: Enemy = ray_result.collider as Enemy
