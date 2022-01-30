@@ -8,12 +8,16 @@ onready var players = get_tree().get_nodes_in_group("Player")
 
 onready var running_time: float = 0
 onready var picked_up: bool = false
+onready var rng := RandomNumberGenerator.new()
 
 var sfxr_mutex
 var sfxr_player: SfxrStreamPlayer 
 
+var stop_everything = false
 
 func _ready():
+	rng.randomize()
+
 	sfxr_mutex = Mutex.new()
 	sfxr_player = $SfxrStreamPlayer
 	var t := Thread.new()
@@ -32,11 +36,23 @@ func get_texture():
 	return sprite.texture
 
 
+func get_powerup():
+	var pu = Powerup.new()
+	var m := int(rng.randi_range(0, 0))
+	match(m):
+		0:
+			pu.type = Powerup.SPEEDX2
+			pu.time = 5
+		_: pass
+	return pu
+
 func pickup(owner):
 	sleeping = true
 	var c:= $CollisionShape as CollisionShape
 	c.disabled = true
 	picked_up = true
+	$Sprite3D.translation.y = 0
+	$Sprite3D.rotation.y = 0
 	var area: Area = $Area as Area
 	area.monitorable = false
 
@@ -54,8 +70,6 @@ func shoot(origin: Vector3, dir: Vector3):
 
 func _process(delta):
 	if picked_up:
-		$Sprite3D.translation.y = 0
-		$Sprite3D.rotation.y = 0
 		return
 	running_time += delta
 	$Sprite3D.translation.y = 0.5 + sin(running_time * 3) * 0.5

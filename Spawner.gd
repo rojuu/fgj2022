@@ -13,7 +13,7 @@ onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
 var stop_everything = false
 
 func _ready():
-	rng.seed = OS.get_unix_time()
+	rng.randomize()
 	player.connect("died", self, "_on_Player_died")
 	
 	spawn_enemy()

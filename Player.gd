@@ -22,6 +22,7 @@ onready var weapon_queue = []
 
 var current_weapon: BaseWeapon
 
+onready var active_powerups = []
 
 func _ready():
 	change_weapon_from_scene(default_weapon)
@@ -39,10 +40,12 @@ func destroy_current_weapon():
 
 
 func eat_current_weapon():
-	destroy_current_weapon()
-	if len(weapon_queue) > 0:
-		var weapon = weapon_queue.pop_front()
-		change_weapon(weapon)
+	if is_instance_valid(current_weapon):
+		active_powerups.append(current_weapon.get_powerup())
+		destroy_current_weapon()
+		if len(weapon_queue) > 0:
+			var weapon = weapon_queue.pop_front()
+			change_weapon(weapon)
 
 
 func change_weapon(weapon: BaseWeapon):
@@ -76,11 +79,26 @@ func _process(dt: float):
 	var forward := -global_transform.basis.z
 	var right := global_transform.basis.x
 	
-	velocity -= right * (move_speed if Input.is_action_pressed("move_left") else 0)
-	velocity += right * (move_speed if Input.is_action_pressed("move_right") else 0)
+	var speed = move_speed
+	var to_remove_powerups = []
+	for idx in range(len(active_powerups)):
+		var powerup = active_powerups[idx]
+		if powerup.time <= 0:
+			to_remove_powerups.append(idx)
+		else:
+			powerup.time -= dt
+			match powerup.type:
+				Powerup.SPEEDX2:
+					speed *= 2
+				_: pass
+	for i in to_remove_powerups:
+		active_powerups.remove(i)
 	
-	velocity += forward * (move_speed if Input.is_action_pressed("move_forwards") else 0)
-	velocity -= forward * (move_speed if Input.is_action_pressed("move_backwards") else 0)
+	velocity -= right * (speed if Input.is_action_pressed("move_left") else 0)
+	velocity += right * (speed if Input.is_action_pressed("move_right") else 0)
+	
+	velocity += forward * (speed if Input.is_action_pressed("move_forwards") else 0)
+	velocity -= forward * (speed if Input.is_action_pressed("move_backwards") else 0)
 	
 	# Mouse look
 	var vp_size := get_viewport().size

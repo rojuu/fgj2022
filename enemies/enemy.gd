@@ -22,7 +22,7 @@ onready var hitvfx = get_node("HitVFX")
 
 func _ready():
 	hitvfx.emitting = false
-	rng.seed = OS.get_unix_time()
+	rng.randomize()
 
 
 func random_element_from_array(arr):
