@@ -316,3 +316,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9122, 4.46224, -86.3747 )
 
 [node name="Bananger4" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2072, 4.46224, -86.3747 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.672095, 0.740465, 0, -0.740465, 0.672095, -12.9283, 76.884, 19.0537 )
+light_color = Color( 1, 1, 0.901961, 1 )
+light_energy = 0.255
+shadow_enabled = true

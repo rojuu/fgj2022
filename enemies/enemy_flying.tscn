@@ -4,8 +4,10 @@
 [ext_resource path="res://sprites/enemies/enemy_wing/enemy_wing_anim.tres" type="SpriteFrames" id=2]
 
 [node name="Enemy" instance=ExtResource( 1 )]
+flying = true
+gravity = 0.0
 
-[node name="Sprite3D" parent="." index="3"]
+[node name="Sprite3D" parent="." index="4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 billboard = 0
 double_sided = false

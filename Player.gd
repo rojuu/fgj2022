@@ -30,6 +30,9 @@ var current_weapon: BaseWeapon
 onready var active_powerups = []
 onready var autofire_powerup: Powerup = null
 
+onready var powerupleft = get_node("Camera/PowerupLeft")
+onready var powerupright = get_node("Camera/PowerupRight")
+
 func _ready():
 	change_weapon_from_scene(default_weapon)
 
@@ -59,6 +62,8 @@ func eat_current_weapon():
 		if len(weapon_queue) > 0:
 			var weapon = weapon_queue.pop_front()
 			change_weapon(weapon)
+	powerupleft.emitting = true
+	powerupright.emitting = true
 
 
 func change_weapon(weapon: BaseWeapon):
