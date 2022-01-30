@@ -2,6 +2,7 @@ extends Control
 
 var main
 var highscore: float
+onready var ggsound = get_node("ggsound")
 
 func update_highscore_ui():
 	$Control/VBoxContainer/Higscore.text = "Highscore: %.3f" % highscore
@@ -17,6 +18,9 @@ func back_to_menu(alive_time, highscore_):
 	$Control/VBoxContainer/Label.text = "You survived for: %.3f seconds\n" % alive_time
 	$Control.visible = true
 	$Control/VBoxContainer/Button.text = "Restart"
+	ggsound.play()
+	yield(get_tree().create_timer(5), "timeout")
+	ggsound.stop()
 
 
 func _draw():
