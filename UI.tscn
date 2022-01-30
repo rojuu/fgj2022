@@ -45,30 +45,30 @@ scale = Vector2( 0.264583, 0.264583 )
 texture = ExtResource( 2 )
 
 [node name="Higscore" type="Label" parent="Control/VBoxContainer"]
-margin_top = 168.0
+margin_top = 151.0
 margin_right = 340.0
-margin_bottom = 182.0
+margin_bottom = 165.0
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
-margin_top = 186.0
+margin_top = 169.0
 margin_right = 340.0
-margin_bottom = 200.0
+margin_bottom = 183.0
 align = 1
 
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
-margin_top = 204.0
+margin_top = 187.0
 margin_right = 340.0
-margin_bottom = 224.0
+margin_bottom = 207.0
 text = "Restart"
 
 [node name="Guide" type="Label" parent="Control/VBoxContainer"]
-margin_top = 228.0
+margin_top = 211.0
 margin_right = 340.0
-margin_bottom = 395.0
+margin_bottom = 412.0
 text = "
 Tutorial:
 
@@ -78,7 +78,9 @@ Different weapons give different powerups
 Click left mouse button to shoot
 Shoot enemies to kill them
 
-Stay alive"
+Stay alive
+
+Credits: Toni Aaltonen, Roni Juppi, Markus Hyvärinen"
 align = 1
 
 [connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="_on_Button_pressed"]
