@@ -68,7 +68,7 @@ func pickup(owner):
 	area.monitorable = false
 
 
-func shoot(origin: Vector3, dir: Vector3):
+func shoot(origin: Vector3, dir: Vector3, should_do_explody: bool):
 	shootvfx.restart()
 	sfxr_mutex.lock()
 	sfxr_player.play_sfx()
@@ -77,7 +77,7 @@ func shoot(origin: Vector3, dir: Vector3):
 	var ray_result = get_world().direct_space_state.intersect_ray(origin, dir * 10000, [self] + players + weapons)
 	var enemy: Enemy = ray_result.collider as Enemy
 	if enemy != null:
-		enemy.take_damage(damage)
+		enemy.take_damage(damage, should_do_explody)
 
 
 func _process(delta):

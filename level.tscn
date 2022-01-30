@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/kenney_prototypetextures/PNG/Dark/texture_08.png" type="Texture" id=1]
 [ext_resource path="res://SpawnPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/kenney_prototypetextures/PNG/Orange/texture_09.png" type="Texture" id=3]
-[ext_resource path="res://weapons/BaseWeapon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
@@ -304,18 +303,6 @@ use_collision = true
 polygon = PoolVector2Array( -25, -10, -25, -5, 5, 0, 5, -5 )
 depth = 80.0
 material = SubResource( 6 )
-
-[node name="Bananger" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.343, 4.46224, -86.3747 )
-
-[node name="Bananger2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.3187, 4.46224, -87.1194 )
-
-[node name="Bananger3" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9122, 4.46224, -86.3747 )
-
-[node name="Bananger4" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2072, 4.46224, -86.3747 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.672095, 0.740465, 0, -0.740465, 0.672095, -12.9283, 76.884, 19.0537 )

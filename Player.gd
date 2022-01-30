@@ -29,6 +29,7 @@ var current_weapon: BaseWeapon
 
 onready var active_powerups = []
 onready var autofire_powerup: Powerup = null
+onready var explody_powerup: Powerup = null
 
 onready var powerupleft = get_node("Camera/PowerupLeft")
 onready var powerupright = get_node("Camera/PowerupRight")
@@ -56,6 +57,11 @@ func eat_current_weapon():
 				autofire_powerup.time += powerup.time
 			else:
 				autofire_powerup = powerup
+		elif powerup.type == Powerup.Type.EXPLOSIONS:
+			if explody_powerup:
+				explody_powerup.time += powerup.time
+			else:
+				explody_powerup = powerup
 		else:
 			active_powerups.append(powerup)
 		destroy_current_weapon()
@@ -119,6 +125,14 @@ func _process(dt: float):
 		else:
 			autofire = true
 			autofire_powerup.time -= dt
+
+	var explosions := false
+	if explody_powerup:
+		if explody_powerup.time <= 0:
+			explody_powerup = null
+		else:
+			explosions = true
+			explody_powerup.time -= dt
 	
 	velocity -= right * (speed if Input.is_action_pressed("move_left") else 0)
 	velocity += right * (speed if Input.is_action_pressed("move_right") else 0)
@@ -146,7 +160,7 @@ func _process(dt: float):
 		var vpc := Vector2(vp_size.x / 2, vp_size.y / 2)
 		var origin := camera.project_ray_origin(vpc)
 		var dir := camera.project_ray_normal(vpc)
-		current_weapon.shoot(origin, dir)
+		current_weapon.shoot(origin, dir, explosions)
 
 	if cur_autofire_delay > 0:
 		cur_autofire_delay -= dt
