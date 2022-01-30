@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/enemies/enemy_wing/enemy_wing_anim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://sprites/enemies/Pumpkin.png" type="Texture" id=2]
+[ext_resource path="res://enemies/enemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("DebugViewport")
+
+[node name="Enemy" instance=ExtResource( 3 )]
+
+[node name="Sprite3D" parent="." index="4"]
+billboard = 0
+texture = ExtResource( 2 )
+
+[node name="Wing_Left" type="AnimatedSprite3D" parent="Sprite3D" index="0"]
+transform = Transform( 0.992239, 0.124346, 0, -0.124346, 0.992239, 0, 0, 0, 1, -18.8948, 1.6147, -1.05211 )
+flip_h = true
+alpha_cut = 1
+frames = ExtResource( 1 )
+frame = 3
+playing = true
+
+[node name="Wing_Right" type="AnimatedSprite3D" parent="Sprite3D" index="1"]
+transform = Transform( 0.992239, -0.124346, 0, 0.124346, 0.992239, 0, 0, 0, 1, 18.895, 1.615, -1.052 )
+alpha_cut = 1
+frames = ExtResource( 1 )
+frame = 4
+playing = true
+
+[node name="DebugViewport_3D" parent="." index="12"]
+texture = SubResource( 1 )
