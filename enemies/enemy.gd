@@ -22,6 +22,8 @@ onready var hitvfx = get_node("HitVFX")
 onready var deathvfx = get_node("DeathVFX")
 onready var explodevfx = get_node("ExplodeVFX")
 
+onready var enemies_in_explode_range = []
+
 func _ready():
 	rng.randomize()
 	hitvfx.emitting = false
@@ -63,6 +65,10 @@ func take_damage(damage: float):
 		queue_free()
 
 
+func _process(delta):
+	$DebugViewport/Control/NumberOfEnemiesInExplodeRange.text = String(len(enemies_in_explode_range))
+
+
 func _physics_process(delta):
 	if dying:
 		return
@@ -78,3 +84,15 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector3(0,1,0))
 	if is_on_floor():
 		gravity_velocity = 0
+
+
+func _on_Area_body_entered(body):
+	var enemy := body as Enemy
+	if enemy and enemy != self:
+		enemies_in_explode_range.append(enemy)
+
+
+func _on_ExplodeArea_body_exited(body):
+	var enemy := body as Enemy
+	if enemy:
+		enemies_in_explode_range.erase(enemy)
