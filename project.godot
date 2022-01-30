@@ -71,6 +71,7 @@ _global_script_class_icons={
 config/name="Hunger Game"
 config/description="Jammaajilla tuli nälkä. Tehtiin peli ruuasta :)"
 run/main_scene="res://main.tscn"
+boot_splash/image="res://sprites/logo.png"
 config/icon="res://sprites/enemies/ranu.png"
 config/macos_native_icon="El Maco"
 config/windows_native_icon="res://icon.ico"
