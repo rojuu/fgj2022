@@ -8,6 +8,8 @@ export(float) var move_speed = 30
 export(float) var sensitivity = 6.0
 export(int) var max_queued_weapon_count = 2
 
+export(float) var speed2x_speed_multiplier = 1.3
+
 export(PackedScene) var default_weapon
 
 onready var velocity: Vector3 = Vector3.ZERO
@@ -89,7 +91,7 @@ func _process(dt: float):
 			powerup.time -= dt
 			match powerup.type:
 				Powerup.SPEEDX2:
-					speed *= 2
+					speed *= speed2x_speed_multiplier
 				_: pass
 	for i in to_remove_powerups:
 		active_powerups.remove(i)
