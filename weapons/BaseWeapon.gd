@@ -41,10 +41,13 @@ func get_texture():
 
 func get_powerup():
 	var pu = Powerup.new()
-	var m := int(rng.randi_range(0, 0))
+	var m := int(rng.randi_range(0, 1))
 	match(m):
 		0:
 			pu.type = Powerup.SPEEDX2
+			pu.time = 5
+		1:
+			pu.type = Powerup.AUTOFIRE
 			pu.time = 5
 		_: pass
 	return pu
