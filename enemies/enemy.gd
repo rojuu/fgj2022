@@ -75,6 +75,7 @@ func take_damage(damage: float, should_do_explody: bool):
 		if rng.randf() < weapon_drop_chance:
 			drop_random_weapon()
 		$Sprite3D.visible = false
+		$CollisionShape.disabled = true
 		yield(get_tree().create_timer(2), "timeout")
 		queue_free()
 
@@ -93,7 +94,7 @@ func _physics_process(delta):
 		#forward.y = 0
 	velocity = forward * speed
 	if (!flying):
-			gravity_velocity -= gravity
+		gravity_velocity -= gravity
 	velocity.y += gravity_velocity
 	move_and_slide(velocity, Vector3(0,1,0))
 	if is_on_floor():
