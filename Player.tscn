@@ -166,11 +166,12 @@ __meta__ = {
 }
 
 [node name="ScoreText" type="Label" parent="HUD"]
-margin_left = 17.0
-margin_top = 13.0
-margin_right = 58.0
-margin_bottom = 27.0
-rect_pivot_offset = Vector2( 2, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -41.0
+margin_top = 1.0
+margin_bottom = 34.0
+rect_scale = Vector2( 2, 2 )
 theme = SubResource( 3 )
 text = "SCORE"
 align = 1
@@ -180,10 +181,13 @@ __meta__ = {
 }
 
 [node name="ScoreDisplay" type="Label" parent="HUD"]
-margin_left = 17.0
-margin_top = 31.0
-margin_right = 58.0
-margin_bottom = 45.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -216.0
+margin_top = 46.0
+margin_right = -126.0
+margin_bottom = 60.0
+rect_scale = Vector2( 5, 5 )
 rect_pivot_offset = Vector2( 2, 0 )
 theme = SubResource( 3 )
 text = "0"
