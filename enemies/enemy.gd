@@ -45,10 +45,16 @@ func drop_random_weapon():
 	weapon.translation = translation
 
 
-func take_damage(damage: float):
+func take_damage(damage: float, should_do_explody: bool):
 	if dying:
 		return
 	health -= damage
+	
+	if should_do_explody:
+		$ExplodeVFX.restart()
+		for e in enemies_in_explode_range:
+			e.take_damage(6, false)
+	
 	if health <= 0:
 		dying = true
 		deathvfx.restart()
