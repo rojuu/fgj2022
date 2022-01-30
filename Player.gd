@@ -31,10 +31,20 @@ onready var active_powerups = []
 onready var autofire_powerup: Powerup = null
 onready var explody_powerup: Powerup = null
 
-onready var powerupleft = get_node("Camera/PowerupLeft")
-onready var powerupright = get_node("Camera/PowerupRight")
+
+var speed_fx = {}
+var auto_fx = {}
+var boom_fx = {}
+
 
 func _ready():
+	speed_fx["left"] = $Camera/SpeedPowerupLeft as Particles
+	speed_fx["right"] = $Camera/SpeedPowerupRight as Particles
+	auto_fx["left"] = $Camera/AutoPowerupLeft as Particles
+	auto_fx["right"] = $Camera/AutoPowerupRight as Particles
+	boom_fx["left"] = $Camera/BoomPowerupLeft as Particles
+	boom_fx["right"] = $Camera/BoomPowerupLeft2 as Particles
+
 	change_weapon_from_scene(default_weapon)
 
 
@@ -68,8 +78,6 @@ func eat_current_weapon():
 		if len(weapon_queue) > 0:
 			var weapon = weapon_queue.pop_front()
 			change_weapon(weapon)
-	powerupleft.emiwtting = true
-	powerupright.emitting = true
 
 
 func change_weapon(weapon: BaseWeapon):
@@ -99,9 +107,10 @@ func _input(event):
 func _process(dt: float):
 	alive_time += dt
 	
-	# Movement
 	var forward := -global_transform.basis.z
 	var right := global_transform.basis.x
+	
+	var has_speed: bool = false
 	
 	var speed = move_speed
 	var to_remove_powerups = []
@@ -113,6 +122,7 @@ func _process(dt: float):
 			powerup.time -= dt
 			match powerup.type:
 				Powerup.Type.SPEEDX2:
+					has_speed = true
 					speed *= speed2x_speed_multiplier
 				_: pass
 	for i in to_remove_powerups:
@@ -134,13 +144,23 @@ func _process(dt: float):
 			explosions = true
 			explody_powerup.time -= dt
 	
+	speed_fx["right"].emitting = has_speed
+	speed_fx["left"].emitting = has_speed
+	
+	auto_fx["right"].emitting = autofire
+	auto_fx["left"].emitting = autofire
+	
+	boom_fx["right"].emitting = explosions
+	boom_fx["left"].emitting = explosions
+	
+	print(has_speed, " ", autofire, " ", explosions)
+	
 	velocity -= right * (speed if Input.is_action_pressed("move_left") else 0)
 	velocity += right * (speed if Input.is_action_pressed("move_right") else 0)
 	
 	velocity += forward * (speed if Input.is_action_pressed("move_forwards") else 0)
 	velocity -= forward * (speed if Input.is_action_pressed("move_backwards") else 0)
 	
-	# Mouse look
 	var vp_size := get_viewport().size
 	rotate_y((-look_vec.x / vp_size.x) * sensitivity)
 	var camera_rot_x: float = camera.rotation.x
@@ -150,8 +170,6 @@ func _process(dt: float):
 
 	look_vec = Vector2.ZERO
 
-	# Shooting
-	
 	if is_instance_valid(current_weapon) and (
 		Input.is_action_just_pressed("shoot") or
 		(autofire and cur_autofire_delay <= 0)
@@ -168,7 +186,6 @@ func _process(dt: float):
 	if Input.is_action_just_pressed("eat"):
 		eat_current_weapon()
 
-	# Kill if falls off the platform
 	if translation.y < -50.0:
 		die()
 

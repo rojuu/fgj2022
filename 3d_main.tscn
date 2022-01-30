@@ -11,6 +11,11 @@
 [node name="level" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+move_speed = 30.0
+sensitivity = 6.0
+max_queued_weapon_count = 2
+speed2x_speed_multiplier = 1.3
+autofire_delay = 0.1
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource( 5 )
