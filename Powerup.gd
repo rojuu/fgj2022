@@ -2,11 +2,12 @@ extends Reference
 
 class_name Powerup
 
-enum {
+enum Type {
 	NONE,
 	SPEEDX2,
 	AUTOFIRE,
+	EXPLOSIONS,
 }
 
 var time: float = 0
-var type = NONE
+var type = Type.NONE

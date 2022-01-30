@@ -4,6 +4,9 @@ class_name BaseWeapon
 
 export(float) var damage = 3 
 
+export(Powerup.Type) var to_give_powerup = Powerup.Type.NONE
+
+
 onready var players = get_tree().get_nodes_in_group("Player")
 
 onready var running_time: float = 0
@@ -41,14 +44,16 @@ func get_texture():
 
 func get_powerup():
 	var pu = Powerup.new()
-	var m := int(rng.randi_range(0, 1))
-	match(m):
-		0:
-			pu.type = Powerup.SPEEDX2
+	match(to_give_powerup):
+		Powerup.Type.SPEEDX2:
+			pu.type = Powerup.Type.SPEEDX2
 			pu.time = 5
-		1:
-			pu.type = Powerup.AUTOFIRE
+		Powerup.Type.AUTOFIRE:
+			pu.type = Powerup.Type.AUTOFIRE
 			pu.time = 5
+		Powerup.Type.EXPLOSIONS:
+			pu.type = Powerup.Type.EXPLOSIONS
+			pu.time = 4
 		_: pass
 	return pu
 

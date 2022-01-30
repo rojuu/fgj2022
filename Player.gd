@@ -48,7 +48,7 @@ func destroy_current_weapon():
 func eat_current_weapon():
 	if is_instance_valid(current_weapon):
 		var powerup: Powerup = current_weapon.get_powerup()
-		if powerup.type == Powerup.AUTOFIRE:
+		if powerup.type == Powerup.Type.AUTOFIRE:
 			if autofire_powerup:
 				autofire_powerup.time += powerup.time
 			else:
@@ -101,7 +101,7 @@ func _process(dt: float):
 		else:
 			powerup.time -= dt
 			match powerup.type:
-				Powerup.SPEEDX2:
+				Powerup.Type.SPEEDX2:
 					speed *= speed2x_speed_multiplier
 				_: pass
 	for i in to_remove_powerups:
