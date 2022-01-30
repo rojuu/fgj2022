@@ -1,12 +1,17 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://images/b88fb507d9b32602662316f753825094.png" type="Texture" id=1]
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=2]
-[ext_resource path="res://assets/Roblox_Death_Sound_-_Sound_Effect_HD.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sound/enemy_damage_2.ogg" type="AudioStream" id=3]
 [ext_resource path="res://weapons/explody_enemies.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/enemies/Pumpkin.png" type="Texture" id=5]
 [ext_resource path="res://weapons/2xspeed.tscn" type="PackedScene" id=6]
 [ext_resource path="res://weapons/autofire.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sound/enemy_damage_3.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sound/enemy_damage_1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://sound/enemy_damage_4.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sound/enemy_death_1.ogg" type="AudioStream" id=11]
+[ext_resource path="res://sound/enemy_death_2.ogg" type="AudioStream" id=12]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -133,8 +138,35 @@ transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
 billboard = 2
 texture = ExtResource( 5 )
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="HitSound1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+unit_db = 30.0
+max_db = 6.0
+
+[node name="HitSound2" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
+unit_db = 30.0
+max_db = 6.0
+
+[node name="HitSound3" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+unit_db = 30.0
+max_db = 6.0
+
+[node name="HitSound4" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
+unit_db = 30.0
+max_db = 6.0
+
+[node name="DeathSound1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 11 )
+unit_db = 30.0
+max_db = 6.0
+
+[node name="DeathSound2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 12 )
+unit_db = 30.0
+max_db = 6.0
 
 [node name="ExplodeArea" type="Area" parent="."]
 collision_layer = 2

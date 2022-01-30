@@ -24,11 +24,14 @@ onready var explodevfx = get_node("ExplodeVFX")
 
 onready var enemies_in_explode_range = []
 
+var audiorng = RandomNumberGenerator.new()
+
 func _ready():
 	rng.randomize()
 	hitvfx.emitting = false
 	deathvfx.emitting = false
 	explodevfx.emitting = false
+	audiorng.randomize()
 
 
 func random_element_from_array(arr):
@@ -60,10 +63,9 @@ func take_damage(damage: float, should_do_explody: bool):
 		deathvfx.restart()
 	var sprite := $Sprite3D as Sprite3D
 	sprite.modulate = Color.red
-	$AudioStreamPlayer3D.play()
 	hitvfx.restart()
-	yield(get_tree().create_timer(0.3), "timeout")
-	$AudioStreamPlayer3D.stop()
+	playRandomHitSound()
+	#$AudioStreamPlayer3D.stop()
 	sprite.modulate = Color.white
 	if dying:
 		if rng.randf() < weapon_drop_chance:
@@ -102,3 +104,18 @@ func _on_ExplodeArea_body_exited(body):
 	var enemy := body as Enemy
 	if enemy:
 		enemies_in_explode_range.erase(enemy)
+
+func playRandomHitSound():
+	var random_int = rng.randi_range(1, 4)               # pick a valid random number
+	var snd = get_node("HitSound"+str(random_int))  # select a sound
+	snd.play()
+	yield(get_tree().create_timer(0.3), "timeout")
+	snd.stop()
+
+func playRandomDeathSound():
+	var random_int = rng.randi_range(1, 2)               # pick a valid random number
+	var snd = get_node("DeathSound"+str(random_int))  # select a sound
+	snd.play()
+	yield(get_tree().create_timer(0.3), "timeout")
+	snd.stop()
+	
